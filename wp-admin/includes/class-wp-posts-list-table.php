@@ -478,8 +478,9 @@ class WP_Posts_List_Table extends WP_List_Table {
 		$can_edit_post = current_user_can( $post_type_object->cap->edit_post, $post->ID );
 		$post_format = get_post_format( $post->ID );
 		$post_format_class = ( $post_format && !is_wp_error($post_format) ) ? 'format-' . sanitize_html_class( $post_format ) : 'format-default';
+		$custom_class = apply_filters( 'post_list_table_row_class', '', $post );
 	?>
-		<tr id='post-<?php echo $post->ID; ?>' class='<?php echo trim( $rowclass . ' author-' . $post_owner . ' status-' . $post->post_status . ' ' . $post_format_class); ?> iedit' valign="top">
+		<tr id='post-<?php echo $post->ID; ?>' class='<?php echo trim( $rowclass . ' author-' . $post_owner . ' status-' . $post->post_status . ' ' . $post_format_class . ' ' . $custom_class ); ?> iedit' valign="top">
 	<?php
 
 		list( $columns, $hidden ) = $this->get_column_info();
